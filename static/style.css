@@ -1,42 +1,89 @@
 body{
 font-family:Arial;
-background:#f4f6f9;
 margin:0;
+background:#f4f6f9;
 }
 
-header{
-background:#2c3e50;
-color:white;
-text-align:center;
-padding:15px;
-}
-
-nav{
-background:#34495e;
-padding:10px;
-text-align:center;
+.navbar{
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:white;
 }
 
 nav a{
-color:white;
 margin:10px;
 text-decoration:none;
+color:black;
 }
 
-.container{
-width:80%;
-margin:auto;
-padding:20px;
+.hero{
+height:350px;
+background:linear-gradient(45deg,#2c6bed,#6c5ce7);
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
 }
 
-.job{
-background:white;
-padding:20px;
-margin:20px 0;
-box-shadow:0 2px 10px rgba(0,0,0,0.2);
+.hero input{
+padding:12px;
+width:300px;
+border-radius:25px;
+border:none;
 }
 
-.resume{
-background:white;
+.hero button{
+padding:12px 20px;
+border-radius:25px;
+border:none;
+background:#2c6bed;
+color:white;
+}
+
+.jobs{
 padding:40px;
+text-align:center;
+}
+
+.job-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.job-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.apply{
+background:#27ae60;
+color:white;
+border:none;
+padding:8px 15px;
+}
+
+.save{
+background:#f1c40f;
+border:none;
+padding:8px 15px;
+}
+
+.form-container{
+width:300px;
+margin:50px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
 }
