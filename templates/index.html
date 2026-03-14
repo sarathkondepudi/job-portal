@@ -2,29 +2,48 @@
 
 {% block content %}
 
-<h2>Search Jobs</h2>
+<section class="hero">
 
-<form>
+<h1>Find Your Dream Job</h1>
+<p>Search thousands of job opportunities</p>
 
+<form method="GET">
 <input type="text" name="search" placeholder="Search jobs">
-<button>Search</button>
-
+<button type="submit">Search</button>
 </form>
 
-<h2>Available Jobs</h2>
+</section>
+
+
+<section class="jobs">
+
+<h2>Latest Jobs</h2>
+
+<div class="job-container">
 
 {% for job in jobs %}
 
-<div class="job">
+<div class="job-card">
 
 <h3>{{ job.title }}</h3>
-<p>Company: {{ job.company }}</p>
-<p>Location: {{ job.location }}</p>
 
-<button>Apply</button>
+<p class="company">{{ job.company }}</p>
+
+<p>{{ job.location }}</p>
+
+<p class="salary">{{ job.salary }}</p>
+
+<div class="buttons">
+<button class="apply">Apply</button>
+<button class="save">Save</button>
+</div>
 
 </div>
 
 {% endfor %}
+
+</div>
+
+</section>
 
 {% endblock %}
