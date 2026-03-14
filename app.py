@@ -2,25 +2,19 @@ from flask import Flask, render_template, request, redirect, session
 import os
 
 app = Flask(__name__)
-app.secret_key = "secret"
+app.secret_key = "jobportal123"
 
 jobs = [
-    {"title": "Python Developer", "company": "TechSoft", "location": "Hyderabad"},
-    {"title": "Web Developer", "company": "CodeLabs", "location": "Bangalore"},
-    {"title": "Software Engineer", "company": "Infosys", "location": "Chennai"}
+    {"title":"Frontend Developer","company":"Google","location":"Bangalore","salary":"₹12 LPA"},
+    {"title":"UI/UX Designer","company":"Adobe","location":"Hyderabad","salary":"₹10 LPA"},
+    {"title":"Data Analyst","company":"Amazon","location":"Remote","salary":"₹11 LPA"},
+    {"title":"Backend Developer","company":"Microsoft","location":"Pune","salary":"₹13 LPA"}
 ]
 
 users = []
 
-UPLOAD_FOLDER = "static/images"
-
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-
 @app.route("/")
 def home():
-
     search = request.args.get("search")
 
     if search:
@@ -31,26 +25,9 @@ def home():
     return render_template("index.html", jobs=filtered)
 
 
-@app.route("/register", methods=["GET","POST"])
-def register():
-
-    if request.method == "POST":
-
-        username = request.form["username"]
-        password = request.form["password"]
-
-        users.append({"username":username,"password":password})
-
-        return redirect("/login")
-
-    return render_template("register.html")
-
-
 @app.route("/login", methods=["GET","POST"])
 def login():
-
     if request.method == "POST":
-
         username = request.form["username"]
         password = request.form["password"]
 
@@ -62,16 +39,24 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/register", methods=["GET","POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        users.append({"username":username,"password":password})
+        return redirect("/login")
+
+    return render_template("register.html")
+
+
 @app.route("/upload", methods=["GET","POST"])
 def upload():
-
     if request.method == "POST":
-
         file = request.files["resume"]
-
         if file:
-            file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-
+            file.save(os.path.join("static", file.filename))
     return render_template("upload.html")
 
 
@@ -80,7 +65,6 @@ def resume():
     return render_template("resume.html")
 
 
-# IMPORTANT PART FOR RENDER
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0", port=port)
