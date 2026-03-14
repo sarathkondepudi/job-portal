@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Job Portal</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+<h1>Online Job Portal</h1>
+</header>
+
+<nav>
+
+<a href="/">Home</a>
+<a href="/upload">Upload Resume</a>
+<a href="/resume">Resume</a>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+
+</nav>
+
+<div class="container">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</body>
+
+</html>
