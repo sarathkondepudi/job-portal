@@ -4,6 +4,10 @@ import os
 app = Flask(__name__)
 app.secret_key = "jobportal123"
 
+# upload folder create
+UPLOAD_FOLDER = "static/uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 jobs = [
     {"title":"Frontend Developer","company":"Google","location":"Bangalore","salary":"₹12 LPA"},
     {"title":"UI/UX Designer","company":"Adobe","location":"Hyderabad","salary":"₹10 LPA"},
@@ -54,9 +58,12 @@ def register():
 @app.route("/upload", methods=["GET","POST"])
 def upload():
     if request.method == "POST":
-        file = request.files["resume"]
-        if file:
-            file.save(os.path.join("static", file.filename))
+        file = request.files.get("resume")
+
+        if file and file.filename != "":
+            filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+            file.save(filepath)
+
     return render_template("upload.html")
 
 
@@ -65,6 +72,7 @@ def resume():
     return render_template("resume.html")
 
 
+# important for render deployment
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0", port=port)
