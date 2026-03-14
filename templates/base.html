@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Job Portal</title>
-<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<title>JobFinder Portal</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<header>
-<h1>Online Job Portal</h1>
-</header>
+<header class="navbar">
+<div class="logo">JobFinder</div>
 
 <nav>
-
 <a href="/">Home</a>
-<a href="/upload">Upload Resume</a>
 <a href="/resume">Resume</a>
+<a href="/upload">Upload Resume</a>
 <a href="/login">Login</a>
 <a href="/register">Register</a>
-
 </nav>
+</header>
 
-<div class="container">
+{% block content %}{% endblock %}
 
-{% block content %}
-{% endblock %}
-
-</div>
+<footer>
+<p>© 2026 JobFinder Portal</p>
+</footer>
 
 </body>
-
 </html>
